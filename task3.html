@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3 - Advanced Styling & JavaScript</title>
+  <style>
+    /* ===== Global Styles ===== */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+    }
+
+    header {
+      background: #aeb3b9;
+      color: rgb(150, 28, 28);
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    section {
+      margin: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #27ae60;
+      color: white;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #219150;
+    }
+
+    /* ===== Quiz Section ===== */
+    #quiz {
+      max-width: 500px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    /* ===== API Section ===== */
+    #joke {
+      font-size: 18px;
+      color: #555;
+      margin-top: 15px;
+      font-style: italic;
+    }
+
+    /* ===== Responsive Design (Media Queries) ===== */
+    /* Tablet */
+    @media (max-width: 1024px) {
+      body {
+        font-size: 16px;
+      }
+      section {
+        margin: 10px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      body {
+        font-size: 14px;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <h1>Task 3 - Advanced Styling & JavaScript</h1>
+    <p>Responsive Design • Interactive Quiz • API Data Fetch</p>
+  </header>
+
+  <!-- ===== Quiz Section ===== -->
+  <section id="quizSection">
+    <h2>Interactive Quiz</h2>
+    <div id="quiz"></div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <p id="score"></p>
+  </section>
+
+  <!-- ===== API Data Section ===== -->
+  <section id="apiSection">
+    <h2>Random Joke (from API)</h2>
+    <button onclick="getJoke()">Get a Joke</button>
+    <p id="joke"></p>
+  </section>
+
+  <!-- ===== JavaScript ===== -->
+  <script>
+    /* ===== Quiz Logic ===== */
+    const questions = [
+      {
+        q: "What does HTML stand for?",
+        options: ["Hyper Trainer Marking Language", "HyperText Markup Language", "HighText Machine Language"],
+        answer: "HyperText Markup Language"
+      },
+      {
+        q: "Which language is used to style web pages?",
+        options: ["Java", "Python", "CSS"],
+        answer: "CSS"
+      },
+      {
+        q: "Which symbol is used for single-line comments in JavaScript?",
+        options: ["<!-- -->", "//", "/* */"],
+        answer: "//"
+      }
+    ];
+
+    function loadQuiz() {
+      let quizDiv = document.getElementById("quiz");
+      quizDiv.innerHTML = "";
+      questions.forEach((item, index) => {
+        let questionHTML = `<div class="question">
+            <p><b>Q${index+1}: ${item.q}</b></p>`;
+        item.options.forEach(opt => {
+          questionHTML += `
+            <label>
+              <input type="radio" name="q${index}" value="${opt}"> ${opt}
+            </label><br>`;
+        });
+        questionHTML += `</div>`;
+        quizDiv.innerHTML += questionHTML;
+      });
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((item, index) => {
+        let selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected && selected.value === item.answer) {
+          score++;
+        }
+      });
+      document.getElementById("score").innerText = `You scored ${score} out of ${questions.length}`;
+    }
+
+    loadQuiz();
+
+    /* ===== API Fetch (Random Joke) ===== */
+    async function getJoke() {
+      try {
+        let response = await fetch("https://official-joke-api.appspot.com/random_joke");
+        let data = await response.json();
+        document.getElementById("joke").innerText = data.setup + " - " + data.punchline;
+      } catch (error) {
+        document.getElementById("joke").innerText = "Failed to load joke 😢";
+      }
+    }
+  </script>
+
+</body>
+</html>
