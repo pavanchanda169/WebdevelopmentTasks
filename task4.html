@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio - Pavan Guptha</title>
+  <meta name="description" content="Personal portfolio showcasing projects and skills">
+  <style>
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    :root{
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --muted: #6b7280;
+      --dark: #0f172a;
+    }
+
+    *{box-sizing: border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--dark);
+    }
+
+    /* ===== Header / Hero ===== */
+    header.header {
+      background: linear-gradient(90deg, #0b1220 0%, #25406a 100%);
+      color: white;
+      padding: 28px 20px;
+    }
+    .nav-row{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+    .logo{font-weight:700;}
+    nav.navlinks{display:flex;gap:18px;align-items:center}
+    nav.navlinks a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+    nav.navlinks a:hover{text-decoration:underline}
+    .menu-toggle{display:none;border:2px solid rgba(255,255,255,0.12);padding:6px;border-radius:8px;color:white;background:transparent}
+
+    .hero{max-width:1100px;margin:18px auto 0;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;padding:18px 0 40px;}
+    .hero-intro h1{font-size:30px;margin:0 0 10px}
+    .cta-row{display:flex;gap:12px}
+    .btn{background:var(--accent);color:white;padding:10px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;border:2px solid rgba(255,255,255,0.12)}
+    .hero-card{background:rgba(255,255,255,0.06);padding:18px;border-radius:12px;text-align:center}
+    .hero-card img{width:100%;border-radius:8px}
+
+    /* ===== Main content ===== */
+    main{max-width:1100px;margin:24px auto;padding:0 20px}
+    section.card{background:var(--card);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    h2{margin-top:0}
+
+    .about-grid{display:grid;grid-template-columns:1fr 300px;gap:20px}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{background:#eef2ff;color:var(--dark);padding:8px 10px;border-radius:999px;font-weight:600}
+
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .project-card{padding:14px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid rgba(15,23,42,0.04)}
+    .project-card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .project-meta{display:flex;justify-content:space-between;margin-top:10px}
+    .link-btn{border:1px solid var(--accent);color:var(--accent);padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700}
+
+    form.contact-form{max-width:700px;margin:0 auto;display:grid;gap:10px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid #e6eef8}
+    .note{color:var(--muted);font-size:14px}
+    .success{background:#ecfeec;border:1px solid #b7f5c1;padding:10px;border-radius:8px;color:#145214}
+
+    footer{max-width:1100px;margin:10px auto 60px;padding:12px 20px;color:var(--muted);text-align:center}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .about-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:720px){
+      nav.navlinks{display:none;position:fixed;right:12px;top:72px;background:var(--card);padding:14px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.12)}
+      nav.navlinks.open{display:flex;flex-direction:column;gap:10px}
+      .menu-toggle{display:inline-block}
+      .hero-intro h1{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="nav-row">
+      <div class="logo">Pavan Guptha<span style="color:#9ad1ff">.</span></div>
+      <nav>
+        <button class="menu-toggle" id="menuBtn">☰</button>
+        <div class="navlinks" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#todo">To-Do</a>
+          <a href="#products">Products</a>
+          <a href="#api">API Data</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+    <div class="hero" id="home">
+      <div class="hero-intro">
+        <h1>Hi, I am <strong>Pavan Guptha</strong></h1>
+        <p>I build clean and responsive websites using HTML, CSS, and JavaScript.</p>
+        <div class="cta-row">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="https://via.placeholder.com/360x220.png?text=Portfolio+Preview" alt="Portfolio preview">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- About -->
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <div class="about-grid">
+        <div>
+          <p>I am a frontend developer focused on accessible, responsive UIs.
+            Aspiring Software Engineer with strong skills in Java, Python, and software development. Experienced in building
+            projects and completing industrial training with real-time applications. Passionate about creating reliable, scalable 
+            solutions and eager to contribute to innovative projects while continuously learning and growing.
+          </p>
+          <p class="note">Skills</p>
+          <div class="skills">
+            <!-- <div class="chip">HTML</div><div class="chip">CSS</div><div class="chip">JavaScript</div><div class="chip">Git</div> -->
+            <div class="chip">Programming Languages: Java, Python, JavaScript, SQL, Bash</div>
+            <div class="chip">Web & Frontend: HTML5, CSS3, React.js, Node.js,JavaScript</div>
+            <div class="chip">Backend & Databases: Java (Spring Boot), REST APIs, MySQL, DBMS</div>
+            <div class="chip">Core CS: Data Structures & Algorithms, OOP, Operating Systems</div>
+            <div class="chip">Tools & Platforms: Git, VS Code, XAMPP</div>
+          </div>
+        </div>
+        <aside style="text-align:center">
+          <img src="profilepic.jpeg.jpg" alt="Pavan Chanda" class="profile-pic">
+          <div class="note">Location • Hyderabad</div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>ANON Ecommerce App</h3><p class="note">Tech Stack: HTML, CSS, JavaScript, PHP, MySQL, XAMPP
+•	Designed and developed a responsive e-commerce platform ensuring seamless user experience on desktop and mobile.
+•	Built frontend (HTML, CSS, JavaScript) and backend (PHP + MySQL), deployed locally with XAMPP.
+•	Focused on performance optimization, accessibility, and cross-browser compatibility, improving user engagement.
+</p>
+        </article>
+        <article class="project-card">
+          <h3>Virtual Mouse Using Webcam (Computer Vision)</h3><p class="note">Tech Stack: Python, OpenCV
+•	Created a gesture-controlled virtual mouse using real-time webcam input and HSV color detection.
+•	Implemented hand-tracking for cursor movement and clicks, eliminating the need for hardware input devices.
+•	Strengthened skills in algorithm design, debugging, and real-time system handling.
+</p>
+        </article>
+        <!-- <article class="project-card">
+          <h3>Apex</h3><p class="note">Advanced styling & JS</p>
+        </article> -->
+      </div>
+    </section>
+
+
+
+    <!-- Products
+    <section id="products" class="card">
+      <h2>Product Listing</h2>
+      <select id="sortProducts">
+        <option value="asc">Price: Low → High</option>
+        <option value="desc">Price: High → Low</option>
+      </select>
+      <div id="productGrid" class="projects-grid"></div>
+    </section> -->
+
+    <!-- API -->
+    <section id="api" class="card">
+      <h2>Internships & Training</h2>
+      <p><strong>R Techno Solutions, Hyderabad – Industrial Trainee</strong> (June 2023 – Nov 2023)
+        <br>
+      •	Training conducted under the guidance of Arjun College of Technology and Science. <br>
+      •	Worked on real-time software development using Python, Java, and .NET following SDLC practices. <br>
+      •	Gained practical exposure to web development, database integration, and computer networking <br>
+      •	Collaborated on enterprise solutions, enhancing understanding of system design and network protocols <br>
+</p>
+      <h3>Java Programming Internship – Vault of Codes</h3>
+      <h3>Deloitte Analytics Job Simulation – Virtual Internship Program (Forage)</h3>
+      <h3>Introduction to Generative AI – Google Cloud
+</h3>
+      <ul id="userList"></ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <form class="contact-form" id="contactForm" novalidate>
+        <input type="text" id="cname" placeholder="Your name" required>
+        <input type="email" id="cemail" placeholder="Your email" required>
+        <textarea id="cmessage" rows="6" placeholder="Message" required></textarea>
+        <button type="submit" class="btn">Send</button>
+        <div id="formStatus"></div>
+      </form>
+    </section>
+  </main>
+        <!-- To-Do List -->
+    <section id="todo" class="card">
+      <h2>To-Do List</h2>
+      <div style="display:flex;gap:10px;margin-bottom:12px">
+        <input type="text" id="taskInput" placeholder="Enter a new task" style="flex:1">
+        <button id="addTaskBtn" class="btn">Add</button>
+      </div>
+      <ul id="taskList"></ul>
+    </section>
+  <footer>
+    <div>Built with ❤️ • 
+      <a href="https://github.com/pavanchanda169" target="_blank">GitHub</a> • 
+      <a href="https://www.linkedin.com/in/pavan-guptha-559526383" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuBtn=document.getElementById('menuBtn');
+    const navLinks=document.getElementById('navLinks');
+    menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
+
+    // Contact form validation
+    const contactForm=document.getElementById('contactForm');
+    const statusEl=document.getElementById('formStatus');
+    contactForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      statusEl.textContent="Message sent!";
+      contactForm.reset();
+    });
+
+    // To-Do List
+    let tasks=JSON.parse(localStorage.getItem("tasks"))||[];
+    function renderTasks(){
+      const taskList=document.getElementById("taskList");
+      taskList.innerHTML="";
+      tasks.forEach((t,i)=>{
+        const li=document.createElement("li");
+        li.textContent=t.text;
+        if(t.done) li.style.textDecoration="line-through";
+        li.onclick=()=>{tasks[i].done=!tasks[i].done;saveTasks()};
+        taskList.appendChild(li);
+      });
+    }
+    function saveTasks(){localStorage.setItem("tasks",JSON.stringify(tasks));renderTasks()}
+    document.getElementById("addTaskBtn").onclick=()=>{
+      const val=document.getElementById("taskInput").value.trim();
+      if(val){tasks.push({text:val,done:false});document.getElementById("taskInput").value="";saveTasks();}
+    };
+    renderTasks();
+
+    // Products
+    const products=[{name:"Shirt",price:500},{name:"Shoes",price:1200},{name:"Watch",price:800}];
+    function renderProducts(sort="asc"){
+      const grid=document.getElementById("productGrid");
+      grid.innerHTML="";
+      let sorted=[...products].sort((a,b)=>sort==="asc"?a.price-b.price:b.price-a.price);
+      sorted.forEach(p=>{
+        const div=document.createElement("div");
+        div.className="project-card";
+        div.innerHTML=`<h3>${p.name}</h3><p>₹${p.price}</p>`;
+        grid.appendChild(div);
+      });
+    }
+    document.getElementById("sortProducts").onchange=e=>renderProducts(e.target.value);
+    renderProducts();
+
+    // API Fetch
+    document.getElementById("loadUsers").onclick=async()=>{
+      const res=await fetch("https://randomuser.me/api/?results=3");
+      const data=await res.json();
+      const ul=document.getElementById("userList");
+      ul.innerHTML="";
+      data.results.forEach(u=>{
+        let li=document.createElement("li");
+        li.textContent=`${u.name.first} ${u.name.last} (${u.email})`;
+        ul.appendChild(li);
+      });
+    };
+  </script>
+</body>
+</html>

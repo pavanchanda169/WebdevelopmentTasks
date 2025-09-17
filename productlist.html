@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Listing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 20px;
+      background: #f9f9f9;
+    }
+    h1 { text-align: center; }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    select {
+      padding: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card img {
+      width: 100%; height: 150px; object-fit: cover;
+      border-radius: 8px;
+    }
+    .price { font-weight: bold; color: #007bff; }
+  </style>
+</head>
+<body>
+  <h1>🛍️ Product Listing</h1>
+  <div class="filters">
+    <label>
+      Category:
+      <select id="categoryFilter">
+        <option value="all">All</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="books">Books</option>
+      </select>
+    </label>
+    <label>
+      Sort by:
+      <select id="sortFilter">
+        <option value="default">Default</option>
+        <option value="low-high">Price: Low to High</option>
+        <option value="high-low">Price: High to Low</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+
+  <script>
+    const products = [
+      { name: "Smartphone", category: "electronics", price: 400, img: "https://via.placeholder.com/200x150?text=Phone" },
+      { name: "Laptop", category: "electronics", price: 900, img: "https://via.placeholder.com/200x150?text=Laptop" },
+      { name: "T-Shirt", category: "clothing", price: 20, img: "https://via.placeholder.com/200x150?text=T-Shirt" },
+      { name: "Jeans", category: "clothing", price: 40, img: "https://via.placeholder.com/200x150?text=Jeans" },
+      { name: "Book: Java", category: "books", price: 15, img: "https://via.placeholder.com/200x150?text=Book" },
+      { name: "Headphones", category: "electronics", price: 60, img: "https://via.placeholder.com/200x150?text=Headphones" }
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const sortFilter = document.getElementById("sortFilter");
+
+    function renderProducts() {
+      productGrid.innerHTML = "";
+      let filtered = [...products];
+
+      // Filter by category
+      if (categoryFilter.value !== "all") {
+        filtered = filtered.filter(p => p.category === categoryFilter.value);
+      }
+
+      // Sort by price
+      if (sortFilter.value === "low-high") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortFilter.value === "high-low") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      // Render cards
+      filtered.forEach(p => {
+        productGrid.innerHTML += `
+          <div class="card">
+            <img src="${p.img}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p class="price">$${p.price}</p>
+            <p><small>${p.category}</small></p>
+          </div>
+        `;
+      });
+    }
+
+    categoryFilter.addEventListener("change", renderProducts);
+    sortFilter.addEventListener("change", renderProducts);
+
+    renderProducts();
+  </script>
+</body>
+</html>
